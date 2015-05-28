@@ -1,0 +1,9 @@
+extends layout
+
+block bundle
+  script(src='bundle/app.js')
+
+block content
+  h1= title
+  p Welcome to #{title}
+  div(id='app-mount')

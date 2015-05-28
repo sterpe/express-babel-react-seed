@@ -1,0 +1,63 @@
+{
+  "name": "express-react-seed",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "postinstall": "scripts/postinstall.sh"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "blacklist": [
+            "regenerator"
+          ]
+        }
+      ],
+      "browserify-shim",
+      "brfs"
+    ]
+  },
+  "browserify-shim": {
+    "jquery": "global:jQuery",
+    "react": "global:React",
+    "react/addons": "global:React",
+    "react-router": "global:ReactRouter",
+    "immutable": "global:Immutable",
+    "lodash": "global:_",
+    "flux": "global:Flux",
+    "document": "global:document",
+    "window": "global:window"
+  },
+  "dependencies": {
+    "babelify": "^6.1.2",
+    "body-parser": "~1.12.4",
+    "bower": "^1.4.1",
+    "brfs": "^1.4.0",
+    "browserify-middleware": "^5.0.2",
+    "browserify-shim": "^3.8.7",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "express": "~4.12.4",
+    "jade": "~1.9.2",
+    "morgan": "~1.5.3",
+    "serve-favicon": "~2.2.1"
+  },
+  "devDependencies": {
+    "express-generator": "^4.12.4"
+  },
+  "description": "",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sterpe/express-react-seed.git"
+  },
+  "author": "Steven Terpe <srterpe@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sterpe/express-react-seed/issues"
+  },
+  "homepage": "https://github.com/sterpe/express-react-seed"
+}
