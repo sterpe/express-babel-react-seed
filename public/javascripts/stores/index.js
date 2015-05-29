@@ -1,10 +1,8 @@
 const EventEmitter = require('events').EventEmitter
+, dispatcher = require('../dispatcher')
 , invariant = require('invariant')
-, _ = require('lodash')
 , util = require('util')
-;
-
-let dispatcher = require('../dispatcher')
+, _ = require('lodash')
 ;
 
 exports.FLUXStore = ((config) => {
@@ -17,9 +15,8 @@ exports.FLUXStore = ((config) => {
 		, "No property `constructor` in config object."
 	);
 
-	dispatcher = config.dispatcher || dispatcher
+	config.dispatcher = config.dispatcher || dispatcher
 	delete config.constructor;
-	delete config.dispatcher;
 	
 	util.inherits(Constructor, EventEmitter);
 
@@ -43,8 +40,13 @@ exports.FLUXStore = ((config) => {
 		Constructor.prototype.updateState = function (state) {
 			this._state = state;
 		};
-		Constructor.prototype.waitFor = (() => dispatcher
-			.waitFor.apply(dispatcher, [].slice.call(arguments)));
+		Constructor.prototype.waitFor = function () {
+			const dispatcher = this.dispatcher
+			, waitFor = dispatcher.waitFor
+			, args = [].slice.call(arguments)
+			;
+			waitFor.apply(dispatcher, args);
+		};
 
 		Constructor.prototype.dispatchHandler = function (payload) {
 			let handled = false
@@ -80,7 +82,7 @@ exports.FLUXStore = ((config) => {
 			instance.actions[i][1] = instance[method];
 		});
 	}
-	instance.dispatchToken = dispatcher.register(
+	instance.dispatchToken = instance.dispatcher.register(
 		instance.dispatchHandler.bind(instance)
 	);
 	return instance;

@@ -1,7 +1,7 @@
 const FLUXStore = require('./').FLUXStore
 , ActionTypes = require('../constants/action-types')
 , EmailAddressFormActions = ActionTypes.get("email-address-form-actions")
-, regex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/
+, regex = require('../constants/regexes').email
 , initialState = {
 	"address": ""
 	, "valid": false
