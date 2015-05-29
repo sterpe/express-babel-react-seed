@@ -1,6 +1,7 @@
 const FLUXStore = require('./').FLUXStore
-, EmailAddressFormActions = require('../constants/action-types')
-	.get("email-address-form-actions")
+, ActionTypes = require('../constants/action-types')
+, EmailAddressFormActions = ActionTypes.get("email-address-form-actions")
+, regex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/
 , initialState = {
 	"address": ""
 	, "valid": false
@@ -12,7 +13,7 @@ module.exports = new FLUXStore({
 	constructor(){
 		this.updateState(Immutable.Map(initialState));
 	}
-	, regex: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/
+	, regex: regex
 	, updateEmailAddress(s) {
 		const isValid = this.regex.test(s)
 		;

@@ -1,7 +1,7 @@
 const dispatcher = require('../../dispatcher')
-, WebAPIUtils  = require('../../WebAPIUtils')
-, EmailAddressFormActions = require('../../constants/action-types')
-	.get("email-address-form-actions")
+, API  = require('../../WebAPIUtils')
+, ActionTypes = require('../../constants/action-types')
+, EmailAddressFormActions = ActionTypes.get("email-address-form-actions")
 , Payload = require('payload').Payload
 ;
 
@@ -11,7 +11,7 @@ module.exports = {
 		, payload = new Payload(event)
 		;
 		dispatcher.dispatch(payload);
-		WebAPIUtils.registerEmailAddress();
+		API.registerEmailAddress();
 	}
 	, onInputChange(s) {
 		const event = EmailAddressFormActions.get("input-change")
