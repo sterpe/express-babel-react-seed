@@ -1,5 +1,5 @@
-var PureRenderMixin = require('react/addons')
-	.PureRenderMixin
+const React = require('react/addons')
+, PureRenderMixin = React.addons.PureRenderMixin
 , _ = require('lodash')
 ;
 
