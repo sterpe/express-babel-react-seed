@@ -1,16 +1,19 @@
-var React = require('react')
-, StandardPrelude = require('../javascripts/mixins').StandardPrelude
-, EmailForm = require('../javascripts/components/forms/email-address-form-container')
+const React = require('react')
+, Mixins = require('../javascripts/mixins')
+, StandardPrelude = Mixins.StandardPrelude
+, App = require('../javascripts/components/app')
 ;
 
 module.exports = React.createClass({
 	displayName: __filename
 	, mixins: [StandardPrelude]
+	, shouldComponentUpdate() {
+		// Don't update at all...
+		return false;
+	}
 	, render() {
 		return (
-			<div id="app">
-				<EmailForm />
-			</div>
+			<App />
 		);
 	}
 });

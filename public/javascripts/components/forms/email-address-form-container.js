@@ -17,6 +17,10 @@ module.exports = React.createClass({
 	, onChange(e) {
 		emailAddressFormActionCreator.onInputChange(e.target.value);
 	}
+	, onClick(e) {
+		e.preventDefault();
+		emailAddressFormActionCreator.onSubmit();
+	}
 	, onKeyDown(e) {
 		if (e.keyCode == 13) {
 			e.preventDefault();
@@ -31,6 +35,7 @@ module.exports = React.createClass({
 			  shouldValidate={this.state.email.get("shouldValidate")}
 			  onChange={this.onChange}
 			  onKeyDown={this.onKeyDown}
+			  onClick={this.onClick}
 			/>
 		);
 	}
