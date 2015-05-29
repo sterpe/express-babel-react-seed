@@ -40,7 +40,7 @@ module.exports = React.createClass({
 			"btn": true
 			, "btn-default": !shouldValidate
 			, "btn-danger": !valid && address && shouldValidate
-			, "disabled": !valid && address && shouldValidate
+			, "disabled": (!valid && address && shouldValidate) || !address
 			, "btn-success": valid && address && shouldValidate
 		});
 	}
