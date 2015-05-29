@@ -11,3 +11,4 @@ $bower i react-router#0.13
 $bower i immutable#3.7
 $bower i flux#2.x
 $bower i lodash
+$bower i bootstrap

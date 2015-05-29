@@ -1,5 +1,6 @@
 var React = require('react')
 , StandardPrelude = require('../javascripts/mixins').StandardPrelude
+, EmailForm = require('../javascripts/components/forms/email-address-form-container')
 ;
 
 module.exports = React.createClass({
@@ -8,6 +9,7 @@ module.exports = React.createClass({
 	, render() {
 		return (
 			<div id="app">
+				<EmailForm />
 			</div>
 		);
 	}
