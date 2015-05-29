@@ -1,14 +1,11 @@
 const React = require('react')
-, Mixins = require('../../mixins')
-, StandardPrelude = Mixins.StandardPrelude
+, cx = require('classnames')
 , EmailAddressFormContainer =
 	require('../forms/email-address-form-container')
-, cx = require('classnames')
 ;
 
 module.exports = React.createClass({
 	displayName: __filename
-	, mixins: [StandardPrelude]
 	, shouldComponentUpdate() {
 		// This component is structural only...
 		// no need to update.
