@@ -14,16 +14,20 @@ exports.DefaultStoreMixin = {
 		this.store && this.updateState();
 	}
 	, componentDidMount() {
-		this.store && this.store.addListener(
-			'change'
-			, this.updateState
-		);
+		const store = this.store
+		, cb = this.updateState
+		;
+		if (store) {
+			store.addListener('change', cb);
+		}
 	}
 	, componentWillUnmount() {
-		this.store && this.store.removeListener(
-			'change'
-			, this.updateState
-		);
+		const store = this.store
+		, cb = this.updateState
+		;
+		if (store) {
+			store.removeListener('change', cb);
+		}
 	}
 };
 

@@ -3,12 +3,23 @@ const EventEmitter = require('events').EventEmitter
 , invariant = require('invariant')
 , util = require('util')
 , _ = require('lodash')
+, test
 ;
 
+test = function (Constructor) {
+	const bool
+	, s
+	;
+	bool = typeof Constructor === 'function';
+	s = "No `constructor` in config object.";
+
+	invariant(Constructor && bool, s);
+}
 exports.FLUXStore = ((config) => {
 	let instance
 	, Constructor = config.constructor
 	, actions
+	, prototype
 	;
 
 	invariant(Constructor && typeof Constructor === 'function'
@@ -19,6 +30,7 @@ exports.FLUXStore = ((config) => {
 	delete config.constructor;
 	
 	util.inherits(Constructor, EventEmitter);
+	prototype = Constructor.prototype;
 
 	if (config.getHandlers) {
 		config.actions = config.getHandlers();
@@ -39,6 +51,19 @@ exports.FLUXStore = ((config) => {
 		});
 		Constructor.prototype.updateState = function (state) {
 			this._state = state;
+		};
+		Constructor.prototype.set = function (property, value) {
+			const nextState = this.state.set(property, value)
+			;
+			this.updateState(nextState);
+		};
+		Constructor.prototype.get = function (property) {
+			return this.state.get(property);
+		};
+		Constructor.prototype.merge = function (obj) {
+			const nextState = this.state.merge(obj)
+			;
+			this.updateState(nextState);
 		};
 		Constructor.prototype.waitFor = function () {
 			const dispatcher = this.dispatcher

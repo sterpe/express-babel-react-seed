@@ -1,43 +1,57 @@
 const FLUXStore = require('./').FLUXStore
-, ActionTypes = require('../constants/action-types')
-, EmailAddressFormActions = ActionTypes.get("email-address-form-actions")
+, Immutable = require('immutable')
 , regex = require('../constants/regexes').email
-, initialState = {
-	"address": ""
-	, "valid": false
-	, "shouldValidate": false
-}
+, ActionTypes = require('../constants/action-types')
+, Actions = ActionTypes.get("email-address-form-actions")
+, INPUT_CHANGE = Actions.get("input-change")
+, INPUT_SUBMIT = Actions.get("input-submit")
+, AJAX_SUCCESS = Actions.get("ajax-success")
+, ADDRESS = "address"
+, VALID = "valid"
+, DO_VALIDATE = "shouldValidate"
+, initialState = Immutable.Map({
+	[ADDRESS]: ""
+	, [VALID]: false
+	, [DO_VALIDATE]: false
+})
 ;
 
 module.exports = new FLUXStore({
 	constructor(){
-		this.updateState(Immutable.Map(initialState));
+		this.updateState(initialState);
 	}
 	, regex: regex
 	, updateEmailAddress(s) {
 		const isValid = this.regex.test(s)
 		;
-		this.updateState(this.state.merge({
-			"address": s
-			, "valid": isValid
-		}));
+		this.merge({
+			[ADDRESS]: s
+			, [VALID]: isValid
+		});
 		if (!s) {
-			this.updateState(this.state.set("shouldValidate", false));
+			this.set(DO_VALIDATE, false);
 		}
 	}
 	, clearSelf() {
-		this.updateState(this.state.merge(initialState));
+		this.merge(initialState);
 	}
 	, setShouldValidateFlag() {
-		if (this.state.get("address")) {
-			this.updateState(this.state.set("shouldValidate", true));
+		const address = this.get(ADDRESS)
+		;
+		if (address) {
+			this.set(DO_VALIDATE, true);
 		}
 	}
 	, getHandlers() {
-		return [
-			[EmailAddressFormActions.get("input-change"), this.updateEmailAddress]
-			, [EmailAddressFormActions.get("input-submit"), this.setShouldValidateFlag]
-			, [EmailAddressFormActions.get("ajax-success"), this.clearSelf]
-		];
+		const handlers = []
+		;
+		handlers.push([INPUT_CHANGE
+			, this.updateEmailAddress]);
+		handlers.push([INPUT_SUBMIT
+			, this.setShouldValidateFlag]);
+		handlers.push([AJAX_SUCCESS
+			, this.clearSelf]);
+
+		return handlers;
 	}
 });
