@@ -1,12 +1,12 @@
-const FLUXStore = require('./').FLUXStore
+const FLUXStore = require('@flux-store')
+, regex = require('@constants/regexes').email
 , Immutable = require('immutable')
-, regex = require('../constants/regexes').email
-, ActionTypes = require('../constants/action-types')
-, Actions = ActionTypes.get("email-address-form-actions")
-, INPUT_CHANGE = Actions.get("input-change")
-, INPUT_SUBMIT = Actions.get("input-submit")
-, AJAX_SUCCESS = Actions.get("ajax-success")
-, ADDRESS = "address"
+, actions = require('./actions')
+, INPUT_CHANGE = actions.get("input-change")
+, INPUT_SUBMIT = actions.get("input-submit")
+, AJAX_SUCCESS = actions.get("ajax-success")
+, Strings = require('./strings')
+, ADDRESS = require('./strings').ADDRESS
 , VALID = "valid"
 , DO_VALIDATE = "shouldValidate"
 , initialState = Immutable.Map({
@@ -20,7 +20,12 @@ module.exports = new FLUXStore({
 	constructor(){
 		this.updateState(initialState);
 	}
-	, regex: regex
+	, regex
+	, constants: {
+		ADDRESS
+		, VALID
+		, DO_VALIDATE
+	}
 	, updateEmailAddress(s) {
 		const isValid = this.regex.test(s)
 		;

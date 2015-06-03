@@ -8,6 +8,7 @@
   },
   "browserify": {
     "transform": [
+      "./scripts/transform.js",
       [
         "babelify",
         {
@@ -49,7 +50,8 @@
     "morgan": "~1.5.3",
     "payload": "git://github.com/sterpe/payload.git",
     "printf": "git://github.com/sterpe/printf.git",
-    "serve-favicon": "~2.2.1"
+    "serve-favicon": "~2.2.1",
+    "through2": "^0.6.5"
   },
   "devDependencies": {
     "express-generator": "^4.12.4"

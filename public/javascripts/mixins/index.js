@@ -31,8 +31,9 @@ exports.DefaultStoreMixin = {
 	}
 };
 
-exports.StandardPrelude = _.extend(
+exports.Prelude = _.extend(
 	{ }
 	, PureRenderMixin
 	, exports.DefaultStoreMixin
 );
+exports.StandardPrelude = exports.Prelude;

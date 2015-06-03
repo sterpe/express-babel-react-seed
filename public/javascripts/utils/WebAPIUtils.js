@@ -1,10 +1,9 @@
 const $ = require('jquery')
-, EmailAddressStore = require('./stores/email-address-store')
-, emailAddressFormActions = require('./constants/action-types')
-	.get("email-address-form-actions")
+, EmailAddressStore = require('@email-registration/store')
+, emailAddressFormActions = require('@email-registration/actions')
 , printf = require('printf').printf
 , Payload = require('payload').Payload
-, dispatcher = require('./dispatcher')
+, dispatcher = require('@dispatcher')
 ;
 module.exports = {
 	registerEmailAddress() {

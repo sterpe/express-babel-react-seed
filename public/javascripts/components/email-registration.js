@@ -1,12 +1,11 @@
 const React = require('react')
-, Mixins = require('../../mixins')
-, StandardPrelude = Mixins.StandardPrelude
+, Prelude = require('@mixins').Prelude
 , cx = require('classnames')
 ;
 
 module.exports = React.createClass({
 	displayName: __filename
-	, mixins: [StandardPrelude]
+	, mixins: [Prelude]
 	, generateFormGroupClasses() {
 		const shouldValidate = this.props.shouldValidate
 		, valid = this.props.valid

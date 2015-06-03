@@ -1,13 +1,12 @@
 const EventEmitter = require('events').EventEmitter
-, dispatcher = require('../dispatcher')
+, dispatcher = require('@dispatcher')
 , invariant = require('invariant')
 , util = require('util')
 , _ = require('lodash')
-, test
 ;
 
-test = function (Constructor) {
-	const bool
+let test = function (Constructor) {
+	let bool
 	, s
 	;
 	bool = typeof Constructor === 'function';
@@ -15,7 +14,9 @@ test = function (Constructor) {
 
 	invariant(Constructor && bool, s);
 }
-exports.FLUXStore = ((config) => {
+;
+
+module.exports = ((config) => {
 	let instance
 	, Constructor = config.constructor
 	, actions

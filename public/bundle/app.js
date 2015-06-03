@@ -1,5 +1,5 @@
 const React = require('react')
-, App = require('../javascripts/components/app')
+, App = require('@app')
 ;
 
 module.exports = React.createClass({
