@@ -1,7 +1,7 @@
 const immutable = require('immutable')
 , KV = require('@utils/keymirror')
-, guid = __filename.replace(/^\//, "")
 , Strings = require('./strings')
+, guid = __filename.replace(/^\//, "")
 ;
 
 module.exports = Immutable.Map(KV(guid, [
