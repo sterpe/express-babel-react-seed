@@ -2,6 +2,12 @@ const React = require('react')
 , Prelude = require('@mixins').Prelude
 , store = require('./store')
 , actionCreator = require('./action-creator')
+, Strings = require('./strings')
+, ADDRESS = Strings.ADDRESS
+, VALID = Strings.VALID
+, DO_VALIDATE = Strings.DO_VALIDATE
+, LABEL = Strings.LABEL
+, PLACEHOLDER = Strings.PLACEHOLDER
 , EmailRegistration = require('@components/email-registration')
 ;
 
@@ -33,13 +39,14 @@ module.exports = React.createClass({
 
 function render () {
 	return (
-		<EmailRegistration label="Email Address"
-		  address={this.state.email.get("address")}
-		  valid={this.state.email.get("valid")}
-		  shouldValidate={this.state.email.get("shouldValidate")}
+		<EmailRegistration label={LABEL}
+		  address={this.state.email.get(ADDRESS)}
+		  valid={this.state.email.get(VALID)}
+		  shouldValidate={this.state.email.get(DO_VALIDATE)}
 		  onChange={this.onChange}
 		  onKeyDown={this.onKeyDown}
 		  onClick={this.onClick}
+		  placeholder={PLACEHOLDER}
 		/>
 	);
 }

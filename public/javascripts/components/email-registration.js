@@ -61,7 +61,7 @@ module.exports = React.createClass({
 			          value={this.props.address}
 			          onChange={this.props.onChange}
 			          onKeyDown={this.props.onKeyDown}
-			          placeholder="Enter email."
+			          placeholder={this.props.placeholder}
 			        />
 			        <span className={glyphiconClasses}
 			          ariaHidden="true" />

@@ -1,5 +1,7 @@
 module.exports = {
-	ADDRESS: "address"
+	LABEL: "Email Address"
+	, PLACEHOLDER: "Enter email address."
+	, ADDRESS: "address"
 	, VALID: "valid"
 	, DO_VALIDATE: "shouldValidate"
 	, INPUT_CHANGE: "input-change"
