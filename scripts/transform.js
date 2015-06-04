@@ -10,6 +10,10 @@ module.exports = function (file) {
 	;
 	file = file.replace(/(?:\/)?[^\/]*$/, "");
 	rel = path.relative(file, base);
+//	console.log(cwd);
+//	console.log(base);
+//	console.log(file);
+//	console.log(rel);
 	return through2(function (buf, enc, next) {
 		var regex =/(require[\s\n]*\([\s\n]*(?:'|"))\@([\w\-\$\.]*)/g
 		, replacer = "$1" + "./" + rel + "/$2"

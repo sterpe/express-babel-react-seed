@@ -2,13 +2,13 @@ const FLUXStore = require('@flux-store')
 , regex = require('@constants/regexes').email
 , Immutable = require('immutable')
 , actions = require('./actions')
-, INPUT_CHANGE = actions.get("input-change")
-, INPUT_SUBMIT = actions.get("input-submit")
-, AJAX_SUCCESS = actions.get("ajax-success")
 , Strings = require('./strings')
-, ADDRESS = require('./strings').ADDRESS
-, VALID = "valid"
-, DO_VALIDATE = "shouldValidate"
+, INPUT_CHANGE = actions.get(Strings.INPUT_CHANGE)
+, INPUT_SUBMIT = actions.get(Strings.INPUT_SUBMIT)
+, AJAX_SUCCESS = actions.get(Strings.AJAX_SUCCESS)
+, ADDRESS = Strings.ADDRESS
+, VALID = Strings.VALID
+, DO_VALIDATE = Strings.DO_VALIDATE
 , initialState = Immutable.Map({
 	[ADDRESS]: ""
 	, [VALID]: false
