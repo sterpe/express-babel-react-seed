@@ -21,11 +21,6 @@ module.exports = new FLUXStore({
 		this.updateState(initialState);
 	}
 	, regex
-	, constants: {
-		ADDRESS
-		, VALID
-		, DO_VALIDATE
-	}
 	, updateEmailAddress(s) {
 		const isValid = this.regex.test(s)
 		;
